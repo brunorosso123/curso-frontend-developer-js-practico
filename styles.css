@@ -124,8 +124,10 @@
   .mobile-menu {
     position: absolute;
     top: 60.3px;
+    left: 0;
     padding: 24px;
     background-color: var(--white);
+    width: calc(100% - 24px);
   }
   .mobile-menu a {
     text-decoration: none;
