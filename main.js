@@ -4,13 +4,17 @@ let desktopMenu = document.querySelector(".desktop-menu")
 let menuHamburguesa = document.querySelector(".menu") 
 let mobileMenu = document.querySelector(".mobile-menu") 
 let carrito = document.querySelector(".navbar-shopping-cart") 
-let cartDitail = document.querySelector(".product-detail") 
+let cartDitail = document.querySelector("#shopingCartConteiner") 
+let productDetailConteiner = document.querySelector("#productDitail") 
+let productDetailConteinerClose = document.querySelector(".product-detail-close") 
+
 
 
 let toogleShoppingCart =()=> {
     cartDitail.classList.toggle('inactive')
     mobileMenu.classList.add('inactive')
     desktopMenu.classList.add('inactive')
+    productDetailConteiner.classList.add('inactive')
 }
 carrito.addEventListener('click', toogleShoppingCart);
 
@@ -18,6 +22,7 @@ let toogleMobileMenu =()=> {
     mobileMenu.classList.toggle('inactive')
     cartDitail.classList.add('inactive')
     desktopMenu.classList.add('inactive')
+    productDetailConteiner.classList.add('inactive')
 }
 menuHamburguesa.addEventListener('click', toogleMobileMenu);
 
@@ -25,10 +30,21 @@ let toggleDesktopMenu =()=>{
     desktopMenu.classList.toggle('inactive')
     mobileMenu.classList.toggle('inactive')
     cartDitail.classList.add('inactive')
+    productDetailConteiner.classList.add('inactive')
+}
+let closeProductDetailAside=()=>{
+    productDetailConteiner.classList.add('inactive')
+    desktopMenu.classList.add('inactive')
+    mobileMenu.classList.add('inactive')
+    cartDitail.classList.add('inactive')
+
 }
 menuEmail.addEventListener('click',toggleDesktopMenu);
 
-
+let openProductDetailAside = ()=>{
+    productDetailConteiner.classList.remove('inactive')
+}
+productDetailConteinerClose.addEventListener('click',closeProductDetailAside)
 //codigo para 
 const productList = [];
 productList.push ({
@@ -80,10 +96,13 @@ productList.push ({
 
 //se puso el for dentro de una funcion para poder reutilizarlo si es que se quiere en otro lado
 const renderProducts = (arr)=>{for (product of arr){
+
+
     const productCard = document.createElement('div');
     productCard.classList.add('product-card');
     const productImg = document.createElement('img');
     productImg.setAttribute('src', product.image);
+    productImg.addEventListener('click', openProductDetailAside)
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info')
     const productInfoDiv = document.createElement('div');
